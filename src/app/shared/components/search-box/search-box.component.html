@@ -1,0 +1,9 @@
+
+<mat-icon class="text-dark-gray mr-2">search</mat-icon>
+<input
+    type="text"
+    class="w-full focus:outline-none bg-inherit text-dark-gray"
+    [placeholder]="placeholder"
+    [value] = "initialValue"
+    (keyup)="onKeyPress(txtInput.value)"
+    #txtInput>

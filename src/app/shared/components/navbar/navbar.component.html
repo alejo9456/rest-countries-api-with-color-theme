@@ -1,0 +1,6 @@
+<h1 class="font-heavy">Where in the world?</h1>
+<span class="flex ">
+    <span *ngIf="!darkMode" (click)="toggleDarkMode()"><mat-icon class="mr-2 cursor-pointer">wb_sunny</mat-icon></span>
+    <span *ngIf="darkMode" (click)="toggleDarkMode()"><mat-icon class="mr-2 transform rotate-45 cursor-pointer">brightness_2</mat-icon></span>
+    <p class="font-light">{{darkMode? 'Dark' : 'Light'}} Mode</p>
+</span>
