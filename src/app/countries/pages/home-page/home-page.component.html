@@ -1,0 +1,27 @@
+<section class="mt-10">
+    <section class="flex flex-col md:flex-row gap-4 justify-between mb-10">
+        <shared-search-box  
+            (onDebounce)="searchCountriesByTerm($event)"
+            [initialValue]="initialValue"
+            placeholder="Search for a country"
+            class="w-auto shadow-lg md:w-96 flex bg-white dark:bg-dark-blue px-6 py-4 items-center rounded-md"></shared-search-box>
+        <shared-select-box class = "bg-white dark:bg-dark-blue shadow-lg rounded-lg" [options]="regions" (selectedOption)="selectedOption($event)"
+        ></shared-select-box>
+    </section>
+    
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  gap-20 place-items-center">
+        <figure class="overflow-hidden rounded-lg dark:bg-dark-blue shadow-lg" *ngFor="let country of countries">
+            <a [routerLink]="['/detail', country.name.common]">
+                <div class="w-full h-48 overflow-hidden">
+                    <img class="w-full h-full object-cover" src={{country?.flags?.svg}} alt={{country?.name?.common}}>
+                </div>
+                <figcaption class="m-4 flex flex-col gap-3 place-content-center text-very-dark-gray dark:text-white">
+                    <h2 class="font-heavy">{{ country.name.common}}</h2>
+                    <p><span class="font-bold">Population: </span>{{country.population | number}}</p>
+                    <p><span class="font-bold">Region: </span>{{country.region}}</p>
+                    <p><span class="font-bold">Capital: </span>{{country.capital}}</p>
+                </figcaption>
+            </a>
+        </figure>
+    </section>
+</section>

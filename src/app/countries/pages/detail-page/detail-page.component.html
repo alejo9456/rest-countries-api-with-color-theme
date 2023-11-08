@@ -1,0 +1,48 @@
+<section class="mt-10 text-16">
+    <button class="mb-10 shadow flex items-center rounded-md justify-between gap-2 bg-white dark:bg-dark-blue dark:text-white px-4 py-2"
+        [routerLink]="['/']">
+        <mat-icon>keyboard_backspace</mat-icon>
+        Back
+    </button>
+    
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-20">
+    
+        <figure class="h-full overflow-hidden">
+            <img class="h-full" [src]="country?.flags?.svg" alt="{{country?.name}}">
+        </figure>
+        <section class="h-full py-5 dark:text-white">
+            <h2 class="mb-10 font-heavy text-2xl">{{country?.name?.common}}</h2>
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-1">
+                <article class="flex flex-col gap-3">
+                    <p><span class="font-bold">Native Name: </span>{{country?.name?.official}}</p>
+                    <p><span class="font-bold">Population: </span>{{country?.population | number}}</p>
+                    <p><span class="font-bold">Region: </span>{{country?.region}}</p>
+                    <p><span class="font-bold">Sub Region: </span>{{country?.subregion}}</p>
+                    <p><span class="font-bold">Capital: </span>{{country?.capital}}</p>
+                </article>
+                <article class="mb-10 flex flex-col gap-1">
+                    <p><span class="font-bold">Top Level Domain: </span>{{country?.tld?.join(',')}}</p>
+                    <p><span class="font-bold">Currencies: </span>
+                    <span *ngFor="let currency of country?.currencies | keyvalue; let last=last">
+                        {{ currency.value.name }}{{ last ? '' : ', ' }}
+                    </span>
+                    <p><span class="font-bold">Languages: </span>
+                        <ng-container *ngIf="country?.languages; else noLanguages">
+                          <ng-container *ngFor="let key of getLanguageKeys(country?.languages); let last = last">
+                            {{ key }}{{ last ? '' : ', ' }}
+                          </ng-container>
+                        </ng-container>
+                        <ng-template #noLanguages>(No languages available)</ng-template>
+                    </p>                      
+                </article>
+            </section>
+            <section class="mt-4 flex items-center gap-2 flex-wrap" *ngIf="country?.borders">
+                <span class="font-bold">Border Countries: </span>
+                <span class="rounded-sm px-4 py-1 shadow relative dark:bg-dark-blue" *ngFor="let border of country?.borders;">
+                    {{ border }}
+                </span>
+            </section>
+        </section>
+    </section>
+</section>
+
