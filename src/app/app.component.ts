@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
+import { ThemeService } from './theme.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'rest-countries-api-with-color-theme-switcher';
+  constructor(public theme: ThemeService) {}
+  darkMode = false;
+
+  @HostBinding('class.dark') get Theme(){
+    return this.theme.getDarkMode();
+  }
+
 }
