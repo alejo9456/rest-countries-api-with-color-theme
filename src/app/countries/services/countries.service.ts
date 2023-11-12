@@ -46,9 +46,9 @@ export class CountriesService {
     return filteredCountries;
   }
 
-  findCountryByName(name: string): Country | undefined {
+  findCountryByCca3(name: string): Country | undefined {
     const allCountries = this.countriesSubject.getValue();
-    return allCountries.find(country => country.name?.common === name);
+    return allCountries.find(country => country.cca3 === name);
   }
 
 }

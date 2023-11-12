@@ -25,7 +25,7 @@ export class DetailPageComponent implements OnInit{
     this.activateRoute.params
       .pipe(
         switchMap( ({ name }) => {
-          const country = this.countriesService.findCountryByName(name);
+          const country = this.countriesService.findCountryByCca3(name);
           return of(country);
         })
       )  
