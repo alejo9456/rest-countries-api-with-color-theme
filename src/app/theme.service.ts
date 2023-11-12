@@ -5,22 +5,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ThemeService {
-//   private isDarkMode = new BehaviorSubject<boolean>(false);
-
-//   getDarkMode(): Observable<boolean> {
-//     return this.isDarkMode.asObservable();
-//   }
-
-//   toggleDarkMode() {
-//     this.isDarkMode.next(!this.isDarkMode.value);
-//   }
-private isDarkMode = false;
+  private readonly THEME_KEY = 'theme';
+  private isDarkMode = false;
 
   getDarkMode(): boolean {
-    return this.isDarkMode;
+    const storedTheme  = localStorage.getItem(this.THEME_KEY);
+    return this.isDarkMode = storedTheme === 'dark';
   }
 
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
+    localStorage.setItem(this.THEME_KEY, this.isDarkMode ? 'dark' : 'light');
   }
 }
