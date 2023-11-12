@@ -19,6 +19,7 @@
                     <p><span class="font-bold">Region: </span>{{country?.region}}</p>
                     <p><span class="font-bold">Sub Region: </span>{{country?.subregion}}</p>
                     <p><span class="font-bold">Capital: </span>{{country?.capital}}</p>
+                    <p><span class="font-bold">Capital: </span>{{country?.cca3}}</p>
                 </article>
                 <article class="mb-10 flex flex-col gap-1">
                     <p><span class="font-bold">Top Level Domain: </span>{{country?.tld?.join(',')}}</p>
@@ -38,9 +39,12 @@
             </section>
             <section class="mt-4 flex items-center gap-2 flex-wrap" *ngIf="country?.borders">
                 <span class="font-bold">Border Countries: </span>
-                <span class="rounded-sm px-4 py-1 shadow relative dark:bg-dark-blue" *ngFor="let border of country?.borders;">
-                    {{ border }}
-                </span>
+                    <ng-container *ngFor="let border of country?.borders; let last = last">
+                        <a [routerLink]="['/detail', border]" class="cursor-pointer rounded-sm px-4 py-1 shadow relative dark:bg-dark-blue">
+                            {{ border }}
+                        </a>
+                        <span *ngIf="!last">, </span>
+                    </ng-container>
             </section>
         </section>
     </section>
